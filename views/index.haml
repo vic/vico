@@ -1,0 +1,37 @@
+!!! XML
+%html
+  %head
+    %meta{"http-equiv" => "Content-Type", :content => "text/html; charset=iso-8859-1"}  
+    %title Apache Buildr Webstart
+    %link{:rel => "stylesheet", :type => "text/css", :href => "/css/ext-all.css"}
+    %script{:type => "text/javascript", :src => "/js/ext-base.js"}
+    %script{:type => "text/javascript", :src => "/js/ext-all.js"}
+    %script{:type => "text/javascript", :src => "/js/StartMenu.js"}
+    %script{:type => "text/javascript", :src => "/js/TaskBar.js"}
+    %script{:type => "text/javascript", :src => "/js/Desktop.js"}
+    %script{:type => "text/javascript", :src => "/js/App.js"}
+    %script{:type => "text/javascript", :src => "/js/Module.js"}
+    %script{:type => "text/javascript", :src => "/js/Sync.js"}
+    %script{:type => "text/javascript", :src => "/js/vico/desktop.js"}
+    %link{:rel => "stylesheet", :type => "text/css", :href => "/css/desktop.css"}
+  %body{:scroll => "no"}
+    #ux-scratch{:style => "visibility: hidden; display: none"}
+      THIS IS THE SCRATCH
+    #x-desktop
+      %div{:style => "margin:5px; float:right;"}
+        %a{:href => "http://extjs.com", :target => "_blank"}
+          %img{:src => "/images/powered.gif"}
+      %dl#x-shortcuts
+        %dt#grid-win-shortcut
+          %a{:href => "#"}
+            %img{:src => "/images/s.gif"}
+            %div Grid Window
+        %dt#acc-win-shortcut
+          %a{:href => "#"}
+            %img{:src => "/images/s.gif"}   
+            %div Accordion Window
+    #ux-taskbar
+      #ux-taskbar-start
+      #ux-taskbuttons-panel
+      .x-clear
+    
