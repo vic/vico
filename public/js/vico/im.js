@@ -1,27 +1,23 @@
 /* -*- javascript -*- */
 (function() {
-    var tabs = new Ext.Panel({
-        layout : 'accordion',
+    var tabs = new Ext.TabPanel({
         renderTo : 'im-content',
         width : 400,
         height : 400,
+        activeTab : 0,
         items : [{
             title : 'GTalk',
-            iconCls : 'tabs',
-            contentEl : 'im-gtalk'
+            autoLoad : '/im/gtalk'
         }, {
             title : 'Digsby',
-            iconCls : 'tabs',
-            contentEl : 'im-digsby'
+            autoLoad : '/im/digsby'
         }, {
             title : 'TokBox',
-            iconCls : 'tabs',
-            contentEl : 'im-tokbox'
-        }],
-        defaults : {autoScroll : true}
+            autoLoad : '/im/tokbox'
+        }]
     });
 
-    tabs.render();
+//    tabs.render();
 
 })();
 
