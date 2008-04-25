@@ -31,4 +31,5 @@ get '/load/*' do
 end
 
 
+require 'vico/controller/im'
 

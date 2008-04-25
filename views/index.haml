@@ -2,7 +2,7 @@
 %html
   %head
     %meta{"http-equiv" => "Content-Type", :content => "text/html; charset=iso-8859-1"}  
-    %title Apache Buildr Webstart
+    %title apache.org/~vborja - Quarendo Invenietis
     %link{:rel => "stylesheet", :type => "text/css", :href => "/css/ext-all.css"}
     %script{:type => "text/javascript", :src => "/js/ext-base.js"}
     %script{:type => "text/javascript", :src => "/js/ext-all.js"}
@@ -12,6 +12,8 @@
     %script{:type => "text/javascript", :src => "/js/App.js"}
     %script{:type => "text/javascript", :src => "/js/Module.js"}
     %script{:type => "text/javascript", :src => "/js/Sync.js"}
+    %script{:type => "text/javascript", :src => "/js/vico.js"}
+    %script{:type => "text/javascript", :src => "/js/vico/modules/im.js"}
     %script{:type => "text/javascript", :src => "/js/vico/desktop.js"}
     %link{:rel => "stylesheet", :type => "text/css", :href => "/css/desktop.css"}
   %body{:scroll => "no"}
@@ -26,12 +28,14 @@
           %a{:href => "#"}
             %img{:src => "/images/s.gif"}
             %div Grid Window
-        %dt#acc-win-shortcut
+        %dt#im-win-shortcut
           %a{:href => "#"}
-            %img{:src => "/images/s.gif"}   
-            %div Accordion Window
+            %img{:src => "/images/s.gif"}
+            %div IM
+      #gtalk-back{:style => "float: right; margin-top: 58%;"}
+        %iframe{ :src=>"http://www.google.com/talk/service/badge/Show?tk=z01q6amlqvhqiv3jf0eg88du7r9q9kmf8rh7mimktg43lmj6v9ogqvf5jmco0q9igm7ftri0br0v3ciekut81pbmc4rc4uan986ngl75c5ufbbo252aa7gqbfbr0spie94l9u42is2hsdv4e0h6ede00h7hof5bqr418v5gr5&amp;w=200&amp;h=60", :frameborder => "0", :allowtransparency => "true", :width => "200", :height=> "60" }
+
     #ux-taskbar
       #ux-taskbar-start
       #ux-taskbuttons-panel
       .x-clear
-    

@@ -1,6 +1,6 @@
 /* -*- javascript -*- */
 (function() {
-    var VicoUtil = {
+    vico.util = {
         createMsgBox : function(t, s){
             return ['<div class="msg">',
                     '<div class="x-box-tl"><div class="x-box-tr"><div class="x-box-tc"></div></div></div>',
@@ -45,7 +45,7 @@
         }
     };
 
-    var VicoDesktop = new Ext.app.App({
+    var Desktop = new Ext.app.App({
         user : function() {
         },
 
@@ -54,7 +54,7 @@
 	},
 
 	getModules : function(){
-	    return [  ];
+	    return vico.modules;
         },
         
         // config for the start menu
@@ -82,5 +82,7 @@
         }
         
     });
+
+    vico.desktop = Desktop.desktop;
                                       
 })();
