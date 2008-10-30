@@ -21,7 +21,7 @@
   <input id="run" name="run" type="button" value="Run JS.Spec with firebug "></input>
 
   <script type="text/javascript">
-    if(!console) {
+    if(!window.top.console) {
        alert("You need Firebug installed to get this example to work.");
     }
 
@@ -155,9 +155,12 @@
     }
 
    document.getElementById('run').addEventListener('click', function() {
-      var runner = suite.runner({ format : 'firebug' });
+
+      var runner = suite.runner({ format : 'firebug', firebug : window.top.console });
+
       var filter = document.getElementById('filter').value;
       filter = filter.replace(/^\s+|\s+$/, '');
+      alert("JS.Spec will run examples "+filter);
       if (filter.length > 0) {
          filter = new RegExp(filter);
          runner(filter);
