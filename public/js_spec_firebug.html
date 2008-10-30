@@ -1,21 +1,30 @@
 <html>
 <head>
-<title> hello.html </title>
-<script type="text/javascript" src="http://github.com/vic/js.class/tree/spec/source//core/utils.js?raw=true"></script>
-<script type="text/javascript" src="http://github.com/vic/js.class/tree/spec/source//core/module.js?raw=true"></script>
-<script type="text/javascript" src="http://github.com/vic/js.class/tree/spec/source//core/class.js?raw=true"></script>
-<script type="text/javascript" src="http://github.com/vic/js.class/tree/spec/source//core/kernel.js?raw=true"></script>
-<script type="text/javascript" src="http://github.com/vic/js.class/tree/spec/source//core/circulate.js?raw=true"></script>
-<script type="text/javascript" src="http://github.com/vic/js.class/tree/spec/source//core/interface.js?raw=true"></script>
-<script type="text/javascript" src="http://github.com/vic/js.class/tree/spec/source//enumerable.js?raw=true"></script>
-<script type="text/javascript" src="http://github.com/vic/js.class/tree/spec/source//spec.js?raw=true"></script>
+<title> JS.Class running with JSPec </title>
+<script type="text/javascript" src="/vic/js.class/tree/spec/source//core/utils.js?raw=true"></script>
+<script type="text/javascript" src="/vic/js.class/tree/spec/source//core/module.js?raw=true"></script>
+<script type="text/javascript" src="/vic/js.class/tree/spec/source//core/class.js?raw=true"></script>
+<script type="text/javascript" src="/vic/js.class/tree/spec/source//core/kernel.js?raw=true"></script>
+<script type="text/javascript" src="/vic/js.class/tree/spec/source//core/circulate.js?raw=true"></script>
+<script type="text/javascript" src="/vic/js.class/tree/spec/source//core/interface.js?raw=true"></script>
+<script type="text/javascript" src="/vic/js.class/tree/spec/source//enumerable.js?raw=true"></script>
+<script type="text/javascript" src="/vic/js.class/tree/spec/source//spec.js?raw=true"></script>
 </head>
 <body>
-  <div id="spec">You need Firebug installed to get this example to work.</div>
+  <h1>JS.Spec Firebug formatter</h1>
+
+  <div>
+    This page loads JS.Spec to run some examples, you can provide a regexp filter to select the examples to run.
+  </div>
+
   <input id="filter" type="text" name="filter" ></input>
   <input id="run" name="run" type="button" value="Run JS.Spec with firebug "></input>
 
   <script type="text/javascript">
+    if(!console) {
+       alert("You need Firebug installed to get this example to work.");
+    }
+
     var suite = new JS.Spec();
     with(suite) {
 
@@ -147,7 +156,7 @@
 
    document.getElementById('run').addEventListener('click', function() {
       var runner = suite.runner({ format : 'firebug' });
-      var filter = document.getElementById('filer').value;
+      var filter = document.getElementById('filter').value;
       filter = filter.replace(/^\s+|\s+$/, '');
       if (filter.length > 0) {
          filter = new RegExp(filter);
