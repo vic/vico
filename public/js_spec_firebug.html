@@ -1,0 +1,154 @@
+<html>
+<head>
+<title> hello.html </title>
+<script type="text/javascript" src="http://github.com/vic/js.class/tree/spec/source//core/utils.js?raw=true"></script>
+<script type="text/javascript" src="http://github.com/vic/js.class/tree/spec/source//core/module.js?raw=true"></script>
+<script type="text/javascript" src="http://github.com/vic/js.class/tree/spec/source//core/class.js?raw=true"></script>
+<script type="text/javascript" src="http://github.com/vic/js.class/tree/spec/source//core/kernel.js?raw=true"></script>
+<script type="text/javascript" src="http://github.com/vic/js.class/tree/spec/source//core/circulate.js?raw=true"></script>
+<script type="text/javascript" src="http://github.com/vic/js.class/tree/spec/source//core/interface.js?raw=true"></script>
+<script type="text/javascript" src="http://github.com/vic/js.class/tree/spec/source//enumerable.js?raw=true"></script>
+<script type="text/javascript" src="http://github.com/vic/js.class/tree/spec/source//spec.js?raw=true"></script>
+</head>
+<body>
+  <div id="spec">You need Firebug installed to get this example to work.</div>
+  <input id="filter" type="text" name="filter" ></input>
+  <input id="run" name="run" type="button" value="Run JS.Spec with firebug "></input>
+
+  <script type="text/javascript">
+    var suite = new JS.Spec();
+    with(suite) {
+
+       describe("JS.Spec", function() {
+
+         it("supports pending examples");
+
+         describe("be nested group", function() {
+
+           it("intentionally fails for undefined value", function() {
+             (undefined).should( be(undefined) )
+           });
+
+           it("can test on the expectation", function() {
+              be(undefined).should( match(undefined) )
+           });
+
+           it("can test for undefined using expect", function() {
+             expect(undefined, be(undefined))
+           });
+
+         });
+
+         // You can include helper methods or new matchers with any JS.Module
+         include(new JS.Module({
+           hello : function(who) { return "Hola "+who; } // helper
+         }));
+
+         // or plain objects..
+         include({ name : 'Vico' });
+
+         /* you can add many examples by proving a plain object to it */
+         it({
+           'should test for identity': function() {
+              ("hola").should_not(be("hola"));
+              var bye = new Object();
+              bye.should(be(bye));
+           },
+           'should use helpers' : function() {
+               hello(name).should(equal("Hola Vico"));
+           },
+           'should execute on its own instance' : function() {
+              // change the inherited value
+              this.name = "Dont affect others"; 
+              name.should_not( equal("Vico") );
+           },
+           'should not be modified' : function() {
+              name.should(equal("Vico"));
+           }
+         });
+
+         describe('matchers', function() {
+
+           include({
+             // a custom matcher for this group and its childs           
+             haveSameLength: function(expected) {
+                return new this.SameLengthMatcher(expected);
+             },
+             SameLengthMatcher : new JS.Class({  // custom matcher
+                  initialize : function(expected) {
+                     this.expected = expected;
+                  },
+                  matches: function(subject) {
+                     this.subject = subject;
+                     return this.subject.length == this.expected.length;
+                  },
+                  failureMessage: function() {
+                     return "expected "+this.subject+" to have same"+
+                            " length than "+this.expected;
+                  },
+                  negativeFailureMessage: function() {
+                     return "didn't "+this.failureMessage();
+                  }
+             })
+           });
+  
+           it('can use custom matchers', function() {
+              "HELLO".should( haveSameLength("hallo") );
+           });
+          
+           describe("inherited in sub-groups", {
+             'can use parent matchers': function() {
+                "ALOHA".should( haveSameLength("ADIOS") );
+             }
+           })
+         });
+
+         it('parent has no subgroup matchers available', function() {
+             be(undefined).should( match(this.haveSameLength) );
+         });
+
+         it({
+           'beLessThan': function() { (1).should(beLessThan(2)) },
+
+           'beLessOrEqualThan': function() { 
+               (2).should(beLessOrEqualThan(2)) 
+            },
+            // beGreaterThan, beGreaterOrEqualThan
+
+            'respondTo' : function() {
+              this.should_not(respondTo('haveSameLength'));  
+            },
+            'implement' : function() {
+              this.should(implement(new JS.Interface(['should', 'expect'])));
+            },
+
+            'satisfy' : function() {
+              (10).should(satisfy(function(o) { return o % 2 == 0 }));
+            }
+         });
+
+         describe("include", function() {
+           it("checks for elements", function() {
+              [1, 2, 3].should( include(1, 3) )
+            })
+         });
+
+         describe("change", function() {
+           it("can test for an object property", function() {
+             var o = { one : 2 };
+             (function() {
+                o.one = 4;
+              }).should( change(o, 'one').from(2).by(2) );
+           });
+         });
+
+       });
+    }
+
+   $('#run').click(function() {
+      suite.runner({ format : 'firebug' })(new RegExp($('#filter')[0].value));
+   });
+  </script>
+  
+</body>
+</html>
