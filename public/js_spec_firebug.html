@@ -160,7 +160,7 @@
 
       var filter = document.getElementById('filter').value;
       filter = filter.replace(/^\s+|\s+$/, '');
-      alert("JS.Spec will run examples with filter:"+filter+"\n"+
+      alert("JS.Spec will run examples with filter:"+filter+"."+
             "Press OK to run the specs, and open your firebug console to see the results.");
       if (filter.length > 0) {
          filter = new RegExp(filter);
